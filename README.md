@@ -62,7 +62,7 @@ value in Table 1 and is the base the others extend.
 | `hint-120b.env` | §6.1 — the hint written by GPT-OSS-120B instead of by the student. |
 | `forward-kl.env` | §6.2 — forward KL instead of reverse. |
 | `rollout-8192.env` | §6.3 — no rollout truncation. |
-| `opsd.env`, `sft.env` | The two baselines. Run through their own entrypoints. |
+| `opsd.env`, `sft.env` | The two baselines. Run through their own entrypoints (opsd.run, sft.run; NOT launch.py). |
 
 Presets layer over `.env` and lose to the shell environment, so a seed sweep is
 just `SEED=42 python launch.py --config configs/finsd.env`. Every run prints the
