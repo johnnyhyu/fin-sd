@@ -17,7 +17,7 @@ python launch.py --config configs/finsd.env
 
 ## Requirements
 
-Two H100-class GPUs for the 20B student the paper uses: one serves the model
+Two 80GB H/A100 GPUs for the 20B student the paper uses: one serves the model
 through vLLM, one trains it. The pipeline places them itself and keeps them
 disjoint. An `OPENROUTER_API_KEY` is needed for the answer-equivalence judge.
 
