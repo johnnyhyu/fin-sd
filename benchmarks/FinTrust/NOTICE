@@ -1,0 +1,38 @@
+FinTrust — vendored, modified
+=============================
+
+Upstream
+    FinTrust: A Comprehensive Benchmark of Trustworthiness Evaluation in Finance
+    Domain. Hu, Hu, Bai, Zhao, Cohan and Zhao. Proceedings of the 2025
+    Conference on Empirical Methods in Natural Language Processing (EMNLP 2025),
+    pages 10099-10128. arXiv:2510.15232
+    Dataset: https://huggingface.co/datasets/HughieHu/FinTrust
+
+    Upstream ships no LICENSE file. This copy is redistributed for the sole
+    purpose of reproducing the evaluation reported in the accompanying paper.
+    Contact the upstream authors for licensing terms.
+
+What this benchmark is used for here
+    The fourteen-metric compliance audit across seven dimensions reported in
+    paper section 5.4 — trustfulness, robustness, safety, fairness, privacy,
+    transparency and knowledge discovery.
+
+Modifications made to the upstream release
+    config/config.yaml, inference.py, evaluation.py
+        Added. Upstream runs each dimension through its own api_call.py and
+        postprocess_response.py by hand. These wrap all seven dimensions behind
+        the same config.yaml + inference.py + evaluation.py interface used by
+        the other two vendored harnesses, driving them against a locally served
+        vLLM checkpoint.
+    api_utils.py, retry_errors.py, summarize_results.py
+        Added. Shared client, retry handling for partial dimension failures, and
+        a single summary across all fourteen metrics.
+    <dimension>/api_call.py, <dimension>/postprocess_response.py
+        Modified across every dimension to route through api_utils.py rather
+        than each holding its own client and credentials.
+
+Note on generated files
+    FinTrust writes each model's responses into the same directory as the
+    dataset that produced them. Generated files carry an `output` segment in
+    their name and are excluded by .gitignore; the twelve
+    `<task>_evaluation_<N>.json{,l}` input datasets are tracked.

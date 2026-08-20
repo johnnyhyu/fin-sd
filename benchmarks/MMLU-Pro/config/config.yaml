@@ -1,0 +1,142 @@
+inference:
+  # model_name selects one of the `llms` entries below as the model under test.
+  model_name: gpt-oss-20b
+  data_dir: ./data
+  dataset: MMLU-Pro
+  # subset is "all" (full 12k test split), "sampled" (a balanced min(100, category
+  # size) sample from every category — a quick pass over the whole benchmark), or a
+  # single category, e.g. law, math, physics, biology, business, chemistry,
+  # economics, engineering, health, history, other, philosophy, psychology.
+  subset: sampled
+  output_dir: ./results
+  num_shots: 5          # few-shot CoT exemplars drawn per category from validation.json
+  prompt:
+    prompt_type: cot
+
+evaluation:
+  result_dir: ./results
+  model_name: gpt-oss-20b
+  dataset: MMLU-Pro
+  subset: sampled
+  prompt_type: cot
+
+# Multi-sample evaluation. When enabled, inference draws `num_samples` completions
+# per question at (temperature, top_p) and evaluation reports avg@N ± CI,
+# pass@k, and mean per-token entropy. Read by both inference.py and evaluation.py.
+# Leave `enabled: false` for the default single greedy-completion behavior.
+sampling_eval:
+  enabled: false
+  num_samples: 16
+  pass_at_k: [1, 4, 8, 16]
+  temperature: 0.7
+  top_p: 0.95
+  ci_confidence: 0.95
+  compute_entropy: true   # requests logprobs; the model/provider must return them
+  top_logprobs: 20
+
+llms:
+  local-model1:
+    model_id: epoch_1
+    base_url: http://localhost:8000/v1
+    api_key: token-abc123
+    support_system_role: true
+    reasoner: true
+    sampling_args:
+      temperature: 0.0
+      max_tokens: 32768
+      top_p: 1.0
+
+  inkling:
+    model_id: thinkingmachines/inkling
+    api_key: ${OPENROUTER_API_KEY}
+    base_url: https://openrouter.ai/api/v1
+    support_system_role: true
+    reasoner: true
+    rpm: 30
+    max_concurrency: 8
+    sampling_args:
+      temperature: 0.0
+      max_tokens: 32768
+      top_p: 1.0
+
+  deepseek-r1:
+    model_id: deepseek/deepseek-r1
+    api_key: ${OPENROUTER_API_KEY}
+    base_url: https://openrouter.ai/api/v1
+    support_system_role: true
+    reasoner: true
+    sampling_args:
+      temperature: 0.0
+      max_tokens: 32768
+      top_p: 1.0
+      extra_body:
+        provider:
+          order:
+            - "deepseek"
+            - "alibaba"
+
+  deepseek-v4-flash:
+    model_id: deepseek/deepseek-v4-flash
+    api_key: ${OPENROUTER_API_KEY}
+    base_url: https://openrouter.ai/api/v1
+    support_system_role: true
+    reasoner: true
+    sampling_args:
+      temperature: 0.0
+      max_tokens: 32768
+      top_p: 1.0
+      extra_body:
+        provider:
+          order:
+            - "deepseek"
+            - "alibaba"
+
+  deepseek-v4-pro:
+    model_id: deepseek/deepseek-v4-pro
+    api_key: ${OPENROUTER_API_KEY}
+    base_url: https://openrouter.ai/api/v1
+    support_system_role: true
+    reasoner: true
+    sampling_args:
+      temperature: 0.0
+      max_tokens: 32768
+      top_p: 1.0
+      extra_body:
+        provider:
+          order:
+            - "deepseek"
+            - "alibaba"
+
+  qwen3.7-max:
+    model_id: qwen/qwen3.7-max
+    api_key: ${OPENROUTER_API_KEY}
+    base_url: https://openrouter.ai/api/v1
+    support_system_role: true
+    reasoner: false
+    max_retries: 5
+    sampling_args:
+      temperature: 0.0
+      max_tokens: 32768
+      top_p: 1.0
+
+  gpt-oss-20b:
+    model_id: openai/gpt-oss-20b
+    api_key: ${OPENROUTER_API_KEY}
+    base_url: https://openrouter.ai/api/v1
+    support_system_role: true
+    reasoner: true
+    sampling_args:
+      temperature: 0.0
+      max_tokens: 32768
+      top_p: 1.0
+
+  gpt-4o-mini-2024-07-18:
+    model_id: openai/gpt-4o-mini-2024-07-18
+    api_key: ${OPENROUTER_API_KEY}
+    base_url: https://openrouter.ai/api/v1
+    support_system_role: true
+    reasoner: false
+    max_retries: 5
+    sampling_args:
+      temperature: 0.0
+    rpm: 500

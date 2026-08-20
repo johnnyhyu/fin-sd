@@ -1,0 +1,42 @@
+FinanceReasoning — vendored, modified
+=====================================
+
+Upstream
+    FinanceReasoning: Benchmarking Financial Numerical Reasoning More Credible,
+    Comprehensive and Challenging. Tang, E, Ma, He, Liu, Yang, Rong, Li, Ji,
+    Huang, Hu, Liu and Zheng. Proceedings of the 63rd Annual Meeting of the
+    Association for Computational Linguistics (ACL 2025), pages 15748-15769.
+    arXiv:2506.05828
+
+    Upstream ships no LICENSE file. This copy is redistributed for the sole
+    purpose of reproducing the evaluation reported in the accompanying paper.
+    Contact the upstream authors for licensing terms.
+
+What this benchmark is used for here
+    The Hard subset (238 problems) is the evaluation set for every accuracy,
+    completion-rate and token number in the paper. The released library of 3,133
+    financial functions in data/functions/ is also the seed corpus for
+    data/build/, the corpus construction chain described in paper section 4.1.
+
+Modifications made to the upstream release
+    config/config.yaml
+        Rewritten. Adds a `local-model1` route pointing at the locally served
+        vLLM checkpoint under evaluation, a `sampling_eval` block for avg@N /
+        pass@k / entropy reporting, and `deepseek-v4-flash` as the answer
+        extraction judge. The model catalog is trimmed to those two routes;
+        upstream's wider comparison lineup produces no number in this paper.
+    utils/llm.py, utils/config.py, utils/openai_batch.py
+        Modified for the local vLLM route and for reasoning models that return
+        chain-of-thought on a separate response channel.
+    mcnemar_test.py
+        Added. Paired significance test between two evaluation.json files.
+
+Removed from this distribution
+    Not deleted upstream, simply not redistributed here, as the paper's
+    chain-of-thought path never invokes them:
+        data/documents/         retrieval corpus (95 MB), RAG path only
+        static/, index.html     upstream project webpage
+        rag_parallel.py         RAG inference entrypoint
+        serve_retriever_*.py    retrieval servers
+        utils/bm25_utils.py     used only by the retrieval servers
+        extract_test.py, test.json

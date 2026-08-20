@@ -1,0 +1,1 @@
+python evaluation.py --config config/config.yaml

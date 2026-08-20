@@ -1,0 +1,602 @@
+[
+  {
+    "symbol": "THS",
+    "description": "Treehouse Foods, Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Treehouse Foods, Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Consumer Staples"
+  },
+  {
+    "symbol": "VST",
+    "description": "Vistra Energy Corp.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Vistra Energy Corp. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Utilities"
+  },
+  {
+    "symbol": "LAD",
+    "description": "Lithia Motors, Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Lithia Motors, Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Consumer Discretionary"
+  },
+  {
+    "symbol": "LKQ",
+    "description": "LKQ Corporation",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the LKQ Corporation stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Consumer Discretionary"
+  },
+  {
+    "symbol": "PRAA",
+    "description": "PRA Group, Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the PRA Group, Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Financials"
+  },
+  {
+    "symbol": "CYTK",
+    "description": "Cytokinetics, Incorporated",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Cytokinetics, Incorporated stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Health Care"
+  },
+  {
+    "symbol": "INFI",
+    "description": "Infinity Pharmaceuticals, Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Infinity Pharmaceuticals, Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Health Care"
+  },
+  {
+    "symbol": "MGNX",
+    "description": "MacroGenics, Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the MacroGenics, Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Health Care"
+  },
+  {
+    "symbol": "LCII",
+    "description": "LCI Industries",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the LCI Industries stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Consumer Discretionary"
+  },
+  {
+    "symbol": "TSCO",
+    "description": "Tractor Supply Company",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Tractor Supply Company stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Consumer Discretionary"
+  },
+  {
+    "symbol": "ANGO",
+    "description": "AngioDynamics, Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the AngioDynamics, Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Health Care"
+  },
+  {
+    "symbol": "HBIO",
+    "description": "Harvard Bioscience, Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Harvard Bioscience, Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Health Care"
+  },
+  {
+    "symbol": "NSP",
+    "description": "Insperity, Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Insperity, Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Industrials"
+  },
+  {
+    "symbol": "MJCO",
+    "description": "Majesco",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Majesco stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Information Technology"
+  },
+  {
+    "symbol": "IVAC",
+    "description": "Intevac, Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Intevac, Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Information Technology"
+  },
+  {
+    "symbol": "FAST",
+    "description": "Fastenal Company",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Fastenal Company stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Industrials"
+  },
+  {
+    "symbol": "UHS",
+    "description": "Universal Health Services, Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Universal Health Services, Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Health Care"
+  },
+  {
+    "symbol": "TGE",
+    "description": "Tallgrass Energy, LP",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Tallgrass Energy, LP stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Energy"
+  },
+  {
+    "symbol": "SRC",
+    "description": "Spirit Realty Capital, Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Spirit Realty Capital, Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Real Estate"
+  },
+  {
+    "symbol": "POWL",
+    "description": "Powell Industries, Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Powell Industries, Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Industrials"
+  },
+  {
+    "symbol": "BOOM",
+    "description": "DMC Global Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the DMC Global Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Energy"
+  },
+  {
+    "symbol": "SWN",
+    "description": "Southwestern Energy Company",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Southwestern Energy Company stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Energy"
+  },
+  {
+    "symbol": "IESC",
+    "description": "IES Holdings, Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the IES Holdings, Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Industrials"
+  },
+  {
+    "symbol": "ARMK",
+    "description": "Aramark",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Aramark stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Consumer Discretionary"
+  },
+  {
+    "symbol": "POST",
+    "description": "Post Holdings, Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Post Holdings, Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Consumer Staples"
+  },
+  {
+    "symbol": "NUAN",
+    "description": "Nuance Communications, Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Nuance Communications, Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Information Technology"
+  },
+  {
+    "symbol": "VTR",
+    "description": "Ventas, Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Ventas, Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Real Estate"
+  },
+  {
+    "symbol": "PGTI",
+    "description": "PGT Innovations, Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the PGT Innovations, Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Industrials"
+  },
+  {
+    "symbol": "NLSN",
+    "description": "Nielsen N.V.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Nielsen N.V. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Industrials"
+  },
+  {
+    "symbol": "PDLI",
+    "description": "PDL BioPharma, Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the PDL BioPharma, Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Health Care"
+  },
+  {
+    "symbol": "OC",
+    "description": "Owens Corning Inc",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Owens Corning Inc stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Industrials"
+  },
+  {
+    "symbol": "NFG",
+    "description": "National Fuel Gas Company",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the National Fuel Gas Company stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Utilities"
+  },
+  {
+    "symbol": "MKSI",
+    "description": "MKS Instruments, Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the MKS Instruments, Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Information Technology"
+  },
+  {
+    "symbol": "VRTS",
+    "description": "Virtus Investment Partners, Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Virtus Investment Partners, Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Financials"
+  },
+  {
+    "symbol": "POOL",
+    "description": "Pool Corporation",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Pool Corporation stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Consumer Discretionary"
+  },
+  {
+    "symbol": "KAI",
+    "description": "Kadant Inc",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Kadant Inc stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Industrials"
+  },
+  {
+    "symbol": "BMI",
+    "description": "Badger Meter, Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Badger Meter, Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Information Technology"
+  },
+  {
+    "symbol": "BDX",
+    "description": "Becton, Dickinson and Company",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Becton, Dickinson and Company stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Health Care"
+  },
+  {
+    "symbol": "SNR",
+    "description": "New Senior Investment Group Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the New Senior Investment Group Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Real Estate"
+  },
+  {
+    "symbol": "AHT",
+    "description": "Ashford Hospitality Trust Inc",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Ashford Hospitality Trust Inc stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Real Estate"
+  },
+  {
+    "symbol": "ULH",
+    "description": "Universal Logistics Holdings, Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Universal Logistics Holdings, Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Industrials"
+  },
+  {
+    "symbol": "WHR",
+    "description": "Whirlpool Corporation",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Whirlpool Corporation stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Consumer Discretionary"
+  },
+  {
+    "symbol": "RYAAY",
+    "description": "Ryanair Holdings plc",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Ryanair Holdings plc stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Industrials"
+  },
+  {
+    "symbol": "MG",
+    "description": "Mistras Group Inc",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Mistras Group Inc stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Industrials"
+  },
+  {
+    "symbol": "NRIM",
+    "description": "Northrim BanCorp Inc",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Northrim BanCorp Inc stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Financials"
+  },
+  {
+    "symbol": "SP",
+    "description": "SP Plus Corporation",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the SP Plus Corporation stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Industrials"
+  },
+  {
+    "symbol": "GIFI",
+    "description": "Gulf Island Fabrication, Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Gulf Island Fabrication, Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Energy"
+  },
+  {
+    "symbol": "MITK",
+    "description": "Mitek Systems, Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Mitek Systems, Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Information Technology"
+  },
+  {
+    "symbol": "PWR",
+    "description": "Quanta Services, Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Quanta Services, Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Industrials"
+  },
+  {
+    "symbol": "VEEV",
+    "description": "Veeva Systems Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Veeva Systems Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Health Care"
+  },
+  {
+    "symbol": "CLI",
+    "description": "Mack-Cali Realty Corporation",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Mack-Cali Realty Corporation stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Real Estate"
+  },
+  {
+    "symbol": "IBM",
+    "description": "International Business Machines Corporation",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the International Business Machines Corporation stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Information Technology"
+  },
+  {
+    "symbol": "JBLU",
+    "description": "JetBlue Airways Corporation",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the JetBlue Airways Corporation stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Industrials"
+  },
+  {
+    "symbol": "IART",
+    "description": "Integra LifeSciences Holdings Corporation",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Integra LifeSciences Holdings Corporation stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Health Care"
+  },
+  {
+    "symbol": "MXIM",
+    "description": "Maxim Integrated Products, Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Maxim Integrated Products, Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Information Technology"
+  },
+  {
+    "symbol": "ACNB",
+    "description": "ACNB Corporation",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the ACNB Corporation stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Financials"
+  },
+  {
+    "symbol": "PSEC",
+    "description": "Prospect Capital Corporation",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Prospect Capital Corporation stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Financials"
+  },
+  {
+    "symbol": "MRC",
+    "description": "MRC Global Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the MRC Global Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Industrials"
+  },
+  {
+    "symbol": "ACC",
+    "description": "American Campus Communities Inc",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the American Campus Communities Inc stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Real Estate"
+  },
+  {
+    "symbol": "HPP",
+    "description": "Hudson Pacific Properties, Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Hudson Pacific Properties, Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Real Estate"
+  },
+  {
+    "symbol": "RGEN",
+    "description": "Repligen Corporation",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Repligen Corporation stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Health Care"
+  },
+  {
+    "symbol": "PDFS",
+    "description": "PDF Solutions, Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the PDF Solutions, Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Information Technology"
+  },
+  {
+    "symbol": "TFX",
+    "description": "Teleflex Incorporated",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Teleflex Incorporated stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Health Care"
+  },
+  {
+    "symbol": "ROP",
+    "description": "Roper Technologies, Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Roper Technologies, Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Industrials"
+  },
+  {
+    "symbol": "NAVB",
+    "description": "Navidea Biopharmaceuticals, Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Navidea Biopharmaceuticals, Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Health Care"
+  },
+  {
+    "symbol": "CSLT",
+    "description": "Castlight Health, inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Castlight Health, inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Health Care"
+  },
+  {
+    "symbol": "LOGM",
+    "description": "LogMein, Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the LogMein, Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Information Technology"
+  },
+  {
+    "symbol": "F",
+    "description": "Ford Motor Company",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Ford Motor Company stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Consumer Discretionary"
+  },
+  {
+    "symbol": "RICK",
+    "description": "RCI Hospitality Holdings, Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the RCI Hospitality Holdings, Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Consumer Discretionary"
+  },
+  {
+    "symbol": "SRCL",
+    "description": "Stericycle, Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Stericycle, Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Industrials"
+  },
+  {
+    "symbol": "ZEN",
+    "description": "Zendesk, Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Zendesk, Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Information Technology"
+  },
+  {
+    "symbol": "ATRA",
+    "description": "Atara Biotherapeutics, Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Atara Biotherapeutics, Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Health Care"
+  },
+  {
+    "symbol": "FIX",
+    "description": "Comfort Systems USA, Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Comfort Systems USA, Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Industrials"
+  },
+  {
+    "symbol": "WIFI",
+    "description": "Boingo Wireless, Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Boingo Wireless, Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Communication Services"
+  },
+  {
+    "symbol": "RBCN",
+    "description": "Rubicon Technology, Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Rubicon Technology, Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Information Technology"
+  },
+  {
+    "symbol": "HST",
+    "description": "Host Hotels & Resorts, Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Host Hotels & Resorts, Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Real Estate"
+  },
+  {
+    "symbol": "CCU",
+    "description": "Compania Cervecerias Unidas, S.A.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Compania Cervecerias Unidas, S.A. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Consumer Staples"
+  },
+  {
+    "symbol": "FLS",
+    "description": "Flowserve Corporation",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Flowserve Corporation stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Industrials"
+  },
+  {
+    "symbol": "ADNT",
+    "description": "Adient plc",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Adient plc stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Consumer Discretionary"
+  },
+  {
+    "symbol": "EIG",
+    "description": "Employers Holdings Inc",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Employers Holdings Inc stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Financials"
+  },
+  {
+    "symbol": "BK",
+    "description": "Bank Of New York Mellon Corporation (The)",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Bank Of New York Mellon Corporation (The) stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Financials"
+  },
+  {
+    "symbol": "HON",
+    "description": "Honeywell International Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Honeywell International Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Industrials"
+  },
+  {
+    "symbol": "CHCT",
+    "description": "Community Healthcare Trust Incorporated",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Community Healthcare Trust Incorporated stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Real Estate"
+  },
+  {
+    "symbol": "DVD",
+    "description": "Dover Motorsports, Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Dover Motorsports, Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Consumer Discretionary"
+  },
+  {
+    "symbol": "SBSI",
+    "description": "Southside Bancshares, Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Southside Bancshares, Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Financials"
+  },
+  {
+    "symbol": "PRA",
+    "description": "ProAssurance Corporation",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the ProAssurance Corporation stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Financials"
+  },
+  {
+    "symbol": "OI",
+    "description": "Owens-Illinois, Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Owens-Illinois, Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Materials"
+  },
+  {
+    "symbol": "NGVC",
+    "description": "Natural Grocers by Vitamin Cottage, Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Natural Grocers by Vitamin Cottage, Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Consumer Staples"
+  },
+  {
+    "symbol": "PLAY",
+    "description": "Dave & Buster's Entertainment, Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Dave & Buster's Entertainment, Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Consumer Discretionary"
+  },
+  {
+    "symbol": "FMC",
+    "description": "FMC Corporation",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the FMC Corporation stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Materials"
+  },
+  {
+    "symbol": "GNTY",
+    "description": "Guaranty Bancshares, Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Guaranty Bancshares, Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Financials"
+  },
+  {
+    "symbol": "ELVT",
+    "description": "Elevate Credit, Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Elevate Credit, Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Financials"
+  },
+  {
+    "symbol": "SC",
+    "description": "Santander Consumer USA Holdings Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Santander Consumer USA Holdings Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Financials"
+  },
+  {
+    "symbol": "CTXS",
+    "description": "Citrix Systems, Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Citrix Systems, Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Information Technology"
+  },
+  {
+    "symbol": "RCII",
+    "description": "Rent-A-Center Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Rent-A-Center Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Consumer Discretionary"
+  },
+  {
+    "symbol": "GTY",
+    "description": "Getty Realty Corporation",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Getty Realty Corporation stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Real Estate"
+  },
+  {
+    "symbol": "SIGA",
+    "description": "SIGA Technologies Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the SIGA Technologies Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Health Care"
+  },
+  {
+    "symbol": "BREW",
+    "description": "Craft Brew Alliance, Inc.",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Craft Brew Alliance, Inc. stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Consumer Staples"
+  },
+  {
+    "symbol": "CMA",
+    "description": "Comerica Incorporated",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Comerica Incorporated stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Financials"
+  },
+  {
+    "symbol": "PKG",
+    "description": "Packaging Corporation of America",
+    "prompt": "As a finance LLM expert in giving buy and sell suggestion, you suggest me to [MASK] the Packaging Corporation of America stock. You should only output either buy or sell for the [MASK] and no other extra words or explanation.",
+    "gsector": "Materials"
+  }
+]

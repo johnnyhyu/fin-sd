@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reasoning Log Visualizer</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --card: #1e293b;
+    --card2: #162032;
+    --border: #334155;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --accent: #3b82f6;
+    --hint-color: #a78bfa;
+    --full-color: #34d399;
+    --trunc-color: #f59e0b;
+    --correct-color: #34d399;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 14px; line-height: 1.5; height: 100vh; overflow: hidden; display: flex; flex-direction: column; }
+
+  header { padding: 14px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 16px; flex-shrink: 0; flex-wrap: wrap; }
+  header h1 { font-size: 16px; font-weight: 700; }
+
+  .filter-wrap { display: flex; gap: 6px; }
+  .filter-btn { background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 5px 12px; color: var(--muted); font-size: 11px; font-weight: 600; cursor: pointer; transition: background .1s, color .1s; }
+  .filter-btn:hover { background: rgba(255,255,255,.06); color: var(--text); }
+  .filter-btn.active { background: rgba(59,130,246,.18); border-color: var(--accent); color: var(--accent); }
+
+  .meta-bar { margin-left: auto; display: flex; align-items: center; gap: 14px; }
+  .count-label { font-size: 12px; color: var(--muted); }
+
+  .search-wrap input { background: var(--card); border: 1px solid var(--border); border-radius: 7px; padding: 6px 12px; color: var(--text); font-size: 12px; width: 220px; outline: none; }
+  .search-wrap input:focus { border-color: var(--accent); }
+
+  .main { display: flex; flex: 1; overflow: hidden; }
+
+  /* List panel */
+  .list-panel { width: 300px; min-width: 220px; border-right: 1px solid var(--border); overflow-y: auto; flex-shrink: 0; }
+  .list-panel::-webkit-scrollbar { width: 5px; }
+  .list-panel::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  .entry-row { padding: 10px 14px; border-bottom: 1px solid var(--border); cursor: pointer; transition: background .1s; display: flex; gap: 10px; align-items: flex-start; }
+  .entry-row:hover { background: rgba(255,255,255,.04); }
+  .entry-row.selected { background: rgba(59,130,246,.13); border-left: 3px solid var(--accent); padding-left: 11px; }
+  .entry-row.correct-entry { border-left: 2px solid rgba(52,211,153,.3); }
+  .entry-row.correct-entry.selected { border-left: 3px solid var(--accent); }
+  .entry-idx { font-size: 10px; color: var(--muted); flex-shrink: 0; padding-top: 2px; min-width: 22px; }
+  .entry-info { flex: 1; min-width: 0; }
+  .entry-ts { font-size: 10px; color: var(--muted); margin-bottom: 3px; }
+  .entry-hint { font-size: 11px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 4px; }
+  .entry-hint.correct-label { color: var(--correct-color); }
+  .len-bar-wrap { display: flex; gap: 5px; align-items: center; }
+  .len-pill { font-size: 9px; font-weight: 700; padding: 1px 6px; border-radius: 8px; }
+  .len-pill.full { background: #064e3b; color: var(--full-color); }
+  .len-pill.trunc { background: #451a03; color: var(--trunc-color); }
+  .correct-badge { font-size: 9px; font-weight: 700; padding: 1px 7px; border-radius: 8px; background: #064e3b; color: var(--correct-color); letter-spacing: .04em; }
+  .ratio-bar { flex: 1; height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
+  .ratio-fill { height: 100%; background: var(--trunc-color); border-radius: 2px; }
+
+  /* Detail panel */
+  .detail-panel { flex: 1; overflow-y: auto; padding: 20px 28px; }
+  .detail-panel::-webkit-scrollbar { width: 5px; }
+  .detail-panel::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  .detail-empty { display: flex; height: 100%; align-items: center; justify-content: center; color: var(--muted); font-size: 15px; }
+
+  .detail-header { margin-bottom: 18px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .detail-header h2 { font-size: 15px; font-weight: 600; }
+  .detail-ts { font-size: 11px; color: var(--muted); }
+  .correct-tag { font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 6px; background: #064e3b; color: var(--correct-color); }
+
+  .len-stats { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 18px; }
+  .len-stat { padding: 6px 14px; border-radius: 8px; font-size: 12px; font-weight: 600; }
+  .len-stat.full { background: #064e3b; color: var(--full-color); }
+  .len-stat.trunc { background: #451a03; color: var(--trunc-color); }
+  .len-stat.ratio { background: #1e293b; color: var(--muted); border: 1px solid var(--border); }
+  .len-stat.correct { background: #064e3b; color: var(--correct-color); }
+
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+  @media (max-width: 1100px) { .three-col { grid-template-columns: 1fr; } }
+
+  .one-col { display: grid; grid-template-columns: 1fr; gap: 14px; }
+
+  .col-block { display: flex; flex-direction: column; gap: 8px; }
+  .col-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; padding: 5px 10px; border-radius: 6px; display: inline-block; width: fit-content; }
+  .col-label.hint { background: #2e1065; color: var(--hint-color); }
+  .col-label.full { background: #064e3b; color: var(--full-color); }
+  .col-label.trunc { background: #451a03; color: var(--trunc-color); }
+
+  .col-body { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; font-size: 12px; line-height: 1.75; white-space: pre-wrap; word-break: break-word; flex: 1; overflow-y: auto; max-height: 60vh; }
+  .col-body.hint { border-color: rgba(167,139,250,.25); }
+  .col-body.full { border-color: rgba(52,211,153,.2); }
+  .col-body.trunc { border-color: rgba(245,158,11,.2); }
+  .col-body::-webkit-scrollbar { width: 4px; }
+  .col-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+  .last-sentence-row { margin-top: 14px; }
+  .last-sentence-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: 6px; }
+  .last-sentence-body { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; font-size: 12px; line-height: 1.6; white-space: pre-wrap; word-break: break-word; color: #67e8f9; }
+
+  mark { background: #854d0e; color: #fde68a; border-radius: 2px; padding: 0 2px; }
+  .no-results { padding: 20px 16px; color: var(--muted); font-size: 12px; text-align: center; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Reasoning Log Visualizer</h1>
+  <div class="filter-wrap">
+    <button class="filter-btn active" onclick="setFilter('all')">All</button>
+    <button class="filter-btn" onclick="setFilter('correct')">Correct</button>
+    <button class="filter-btn" onclick="setFilter('incorrect')">Incorrect</button>
+  </div>
+  <div class="meta-bar">
+    <span class="count-label" id="count-label"></span>
+    <div class="search-wrap"><input id="search" type="text" placeholder="Search hint / reasoning…" oninput="renderList()"></div>
+  </div>
+</header>
+
+<div class="main">
+  <div class="list-panel" id="list-panel"></div>
+  <div class="detail-panel" id="detail-panel"><div class="detail-empty">Select a record to inspect</div></div>
+</div>
+
+<script>
+let DATA = [];
+let selectedIdx = null;
+let filterMode = 'all';
+
+function isCorrect(r) {
+  // Records logged before the correct field was added won't have it;
+  // those are always incorrect (state_finder only runs on wrong answers).
+  return r.correct === true;
+}
+
+function getRecords() {
+  return DATA;
+}
+
+function filtered() {
+  const q = document.getElementById('search').value.trim().toLowerCase();
+  let records = getRecords().map((r, i) => ({...r, _i: i}));
+
+  if (filterMode === 'correct') records = records.filter(r => isCorrect(r));
+  else if (filterMode === 'incorrect') records = records.filter(r => !isCorrect(r));
+
+  if (!q) return records;
+  return records.filter(r =>
+    (r.hint || '').toLowerCase().includes(q) ||
+    (r.quoted_sentence || '').toLowerCase().includes(q) ||
+    (r.full_reasoning || '').toLowerCase().includes(q) ||
+    (r.truncated_reasoning || '').toLowerCase().includes(q)
+  );
+}
+
+function setFilter(mode) {
+  filterMode = mode;
+  document.querySelectorAll('.filter-btn').forEach(b => {
+    b.classList.toggle('active', b.textContent.toLowerCase() === mode);
+  });
+  selectedIdx = null;
+  renderList();
+  renderDetail();
+}
+
+function esc(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function highlight(text, q) {
+  if (!q) return esc(text);
+  const escaped = q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const re = new RegExp(`(${escaped})`, 'gi');
+  return esc(text).replace(re, '<mark>$1</mark>');
+}
+
+function fmtTime(ts) {
+  try { return new Date(ts).toLocaleString(); } catch(e) { return ts; }
+}
+
+function renderList() {
+  const panel = document.getElementById('list-panel');
+  const items = filtered();
+  const q = document.getElementById('search').value.trim().toLowerCase();
+  const total = getRecords().length;
+  document.getElementById('count-label').textContent = `${items.length} of ${total} records`;
+
+  if (!items.length) {
+    panel.innerHTML = '<div class="no-results">No matching records</div>';
+    return;
+  }
+
+  panel.innerHTML = items.map(r => {
+    const sel = selectedIdx === r._i ? ' selected' : '';
+    if (isCorrect(r)) {
+      return `<div class="entry-row correct-entry${sel}" onclick="selectEntry(${r._i})">
+        <div class="entry-idx">#${r._i + 1}</div>
+        <div class="entry-info">
+          <div class="entry-ts">${fmtTime(r.timestamp)}</div>
+          <div class="entry-hint correct-label">Correct answer</div>
+          <div class="len-bar-wrap">
+            <span class="len-pill full">${r.full_len}c</span>
+            <span class="correct-badge">CORRECT</span>
+          </div>
+        </div>
+      </div>`;
+    }
+    const ratio = r.full_len > 0 ? Math.round(((r.truncated_len || 0) / r.full_len) * 100) : 0;
+    return `<div class="entry-row${sel}" onclick="selectEntry(${r._i})">
+      <div class="entry-idx">#${r._i + 1}</div>
+      <div class="entry-info">
+        <div class="entry-ts">${fmtTime(r.timestamp)}</div>
+        <div class="entry-hint">${esc(r.hint || r.quoted_sentence || '')}</div>
+        <div class="len-bar-wrap">
+          <span class="len-pill full">${r.full_len}c</span>
+          <span class="len-pill trunc">${r.truncated_len}c</span>
+          <div class="ratio-bar"><div class="ratio-fill" style="width:${ratio}%"></div></div>
+          <span style="font-size:9px;color:var(--muted)">${ratio}%</span>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderDetail() {
+  const panel = document.getElementById('detail-panel');
+  if (selectedIdx === null) {
+    panel.innerHTML = '<div class="detail-empty">Select a record to inspect</div>';
+    return;
+  }
+  const records = getRecords();
+  const r = records[selectedIdx];
+  if (!r) { panel.innerHTML = '<div class="detail-empty">Not found</div>'; return; }
+  const q = document.getElementById('search').value.trim().toLowerCase();
+
+  if (isCorrect(r)) {
+    panel.innerHTML = `
+      <div class="detail-header">
+        <h2>Record #${selectedIdx + 1}</h2>
+        <span class="correct-tag">CORRECT</span>
+        <span class="detail-ts">${fmtTime(r.timestamp)}</span>
+      </div>
+      <div class="len-stats">
+        <div class="len-stat full">Full: ${r.full_len.toLocaleString()} chars</div>
+        <div class="len-stat correct">Correct Answer — No Training</div>
+      </div>
+      <div class="one-col">
+        <div class="col-block">
+          <div class="col-label full">Full Reasoning (${r.full_len.toLocaleString()}c)</div>
+          <div class="col-body full">${highlight(r.full_reasoning, q)}</div>
+        </div>
+      </div>
+    `;
+    return;
+  }
+
+  const ratio = r.full_len > 0 ? (((r.truncated_len || 0) / r.full_len) * 100).toFixed(1) : '0.0';
+  panel.innerHTML = `
+    <div class="detail-header">
+      <h2>Record #${selectedIdx + 1}</h2>
+      <span class="detail-ts">${fmtTime(r.timestamp)}</span>
+    </div>
+    <div class="len-stats">
+      <div class="len-stat full">Full: ${r.full_len.toLocaleString()} chars</div>
+      <div class="len-stat trunc">Truncated: ${(r.truncated_len || 0).toLocaleString()} chars</div>
+      <div class="len-stat ratio">Ratio: ${ratio}% retained</div>
+    </div>
+    <div class="three-col">
+      <div class="col-block">
+        <div class="col-label hint">Hint</div>
+        <div class="col-body hint">${highlight(r.hint || '', q)}</div>
+        ${r.quoted_sentence ? `<div class="last-sentence-label" style="margin-top:10px">Quoted Sentence</div>
+        <div class="last-sentence-body" style="margin-top:4px">${highlight(r.quoted_sentence, q)}</div>` : ''}
+      </div>
+      <div class="col-block">
+        <div class="col-label full">Full Reasoning (${r.full_len.toLocaleString()}c)</div>
+        <div class="col-body full">${highlight(r.full_reasoning, q)}</div>
+      </div>
+      <div class="col-block">
+        <div class="col-label trunc">Truncated Reasoning (${(r.truncated_len || 0).toLocaleString()}c)</div>
+        <div class="col-body trunc">${highlight(r.truncated_reasoning || '', q)}</div>
+      </div>
+    </div>
+    ${r.last_sentence != null ? `<div class="last-sentence-row">
+      <div class="last-sentence-label">Last Sentence of Truncated Reasoning</div>
+      <div class="last-sentence-body">${esc(r.last_sentence)}</div>
+    </div>` : ''}
+  `;
+}
+
+function selectEntry(idx) {
+  selectedIdx = idx;
+  renderList();
+  renderDetail();
+  document.getElementById('detail-panel').scrollTop = 0;
+}
+
+function parseJsonl(text) {
+  return text
+    .split('\n')
+    .map(l => l.trim())
+    .filter(Boolean)
+    .map(l => JSON.parse(l));
+}
+
+function showFilePicker(hint) {
+  const panel = document.getElementById('list-panel');
+  panel.innerHTML = `
+    <div class="no-results" style="padding:20px 14px">
+      ${hint ? `<div style="margin-bottom:12px;color:var(--trunc-color)">${esc(hint)}</div>` : ''}
+      <div style="margin-bottom:10px;color:var(--muted);font-size:11px">Open <code>reasoning_log.jsonl</code> directly:</div>
+      <label style="display:inline-block;cursor:pointer;background:var(--accent);color:#fff;padding:7px 14px;border-radius:7px;font-size:12px;font-weight:600">
+        Choose file
+        <input type="file" accept=".jsonl,.json" style="display:none" onchange="loadFile(this)">
+      </label>
+    </div>`;
+}
+
+function loadFile(input) {
+  const file = input.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    try {
+      DATA = parseJsonl(e.target.result);
+      renderList();
+      renderDetail();
+    } catch (err) {
+      document.getElementById('list-panel').innerHTML =
+        '<div class="no-results">Parse error: ' + esc(String(err.message || err)) + '</div>';
+    }
+  };
+  reader.readAsText(file);
+}
+
+async function loadData() {
+  const panel = document.getElementById('list-panel');
+  panel.innerHTML = '<div class="no-results">Loading…</div>';
+  try {
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 3000);
+    const resp = await fetch('../data/reasoning_log.jsonl', { cache: 'no-store', signal: ctrl.signal });
+    clearTimeout(timer);
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+    DATA = parseJsonl(await resp.text());
+  } catch (err) {
+    const isFileUrl = location.protocol === 'file:';
+    showFilePicker(isFileUrl
+      ? 'Fetching failed (file:// restriction). Pick the file below, or serve with: python3 -m http.server'
+      : `Failed to load: ${err.message || err}`);
+    return;
+  }
+  renderList();
+  renderDetail();
+}
+
+// init
+loadData();
+</script>
+</body>
+</html>

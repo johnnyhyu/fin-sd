@@ -1,0 +1,43 @@
+Fin-SD — Hindsight Self-Distillation for Financial Reasoning
+Copyright 2026 Johnny Yu and Cyril Gorlla
+
+This product includes software developed for the paper "How Much Does the Hint
+Matter? Scope Conditions for Hindsight Self-Distillation in Financial Reasoning"
+(ICAIF '26).
+
+Licensed under the Apache License, Version 2.0. See LICENSE.
+
+The corpus under data/ is released separately under CC BY 4.0; see
+data/LICENSE-DATA.
+
+================================================================================
+Third-party components
+================================================================================
+
+This distribution vendors modified copies of four third-party projects. Each
+retains its own upstream license, included in its directory. Per Apache License
+2.0 section 4(b), the modifications made to each are recorded in the NOTICE or
+CHANGES file alongside it.
+
+benchmarks/FinanceReasoning/
+    FinanceReasoning: Benchmarking Financial Numerical Reasoning More Credible,
+    Comprehensive and Challenging (Tang et al., ACL 2025).
+    See benchmarks/FinanceReasoning/NOTICE.
+
+benchmarks/MMLU-Pro/
+    MMLU-Pro: A More Robust and Challenging Multi-Task Language Understanding
+    Benchmark (Wang et al., NeurIPS 2024 Datasets and Benchmarks).
+    Licensed under the MIT License; see benchmarks/MMLU-Pro/LICENSE.
+    See benchmarks/MMLU-Pro/NOTICE.
+
+benchmarks/FinTrust/
+    FinTrust: A Comprehensive Benchmark of Trustworthiness Evaluation in Finance
+    Domain (Hu et al., EMNLP 2025).
+    See benchmarks/FinTrust/NOTICE.
+
+contrib/big-finance-benchmark/
+    Big Finance Harness, Rogo Technologies. Licensed under the Apache License,
+    Version 2.0; see contrib/big-finance-benchmark/LICENSE. Its dataset is
+    licensed separately under CC BY 4.0; see its data/LICENSE-DATA.
+    Substantially modified to run GPT-OSS-20B; see
+    contrib/big-finance-benchmark/CHANGES.md. Produces no result in the paper.

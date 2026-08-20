@@ -1,0 +1,44 @@
+MMLU-Pro — vendored, modified
+=============================
+
+Upstream
+    MMLU-Pro: A More Robust and Challenging Multi-Task Language Understanding
+    Benchmark. Wang, Ma, Zhang, Ni, Chandra, Guo, Ren, Arulraj, He, Jiang, Li,
+    Ku, Wang, Zhuang, Fan, Yue and Chen. Advances in Neural Information
+    Processing Systems 37 (NeurIPS 2024), Datasets and Benchmarks Track.
+    arXiv:2406.01574
+    https://github.com/TIGER-AI-Lab/MMLU-Pro
+
+    Licensed under the MIT License; see LICENSE in this directory.
+
+What this benchmark is used for here
+    Out-of-domain general reasoning, to show that domain post-training does not
+    degrade it (paper section 5.4). The business and economics categories are
+    excluded so the evaluation stays genuinely out of domain, leaving just over
+    10,000 of the ~12,000 questions.
+
+Modifications made to the upstream release
+    config/config.yaml, inference.py, evaluation.py, utils/
+        Added. Upstream drives evaluation through per-model shell scripts with
+        command-line arguments. These give MMLU-Pro the same
+        config.yaml + inference.py + evaluation.py interface as the other two
+        vendored harnesses, so one config shape describes a run against a
+        locally served checkpoint across all three.
+    README.md
+        Rewritten to document that interface.
+    scripts/compare_runs.py
+        Added. Diffs two runs per category.
+    data/MMLU-Pro/
+        Filtered. The business and economics categories are removed, so that the
+        evaluation stays out of domain for a finance-post-trained model.
+        all.json holds 10,399 questions across 12 categories rather than
+        upstream's ~12,000 across 14, sampled.json is filtered to match, and the
+        business.json and economics.json category files are not included.
+        validation.json, the few-shot exemplar pool, is upstream's and still
+        carries all 14 categories. Re-download from upstream for the complete
+        benchmark.
+
+Removed from this distribution
+    eval_results/           ~200 MB of upstream's zipped model outputs for
+                            Llama-2, DeepSeek and others. Regenerable from
+                            upstream; no number in this paper depends on them.

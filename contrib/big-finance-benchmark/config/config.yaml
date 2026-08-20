@@ -1,0 +1,97 @@
+# Big Finance run configuration — the single source of truth for a run, mirroring
+# FinanceReasoning/config/config.yaml and MMLU-Pro/config/config.yaml.
+#
+#   scripts/inference.sh   ->  python inference.py  --config config/config.yaml
+#   scripts/evaluation.sh  ->  python evaluation.py --config config/config.yaml
+#
+# `model_name` selects an entry from the `llms:` catalog below. Secrets are
+# referenced by name (${OPENROUTER_API_KEY} / ${VLLM_API_KEY}) and resolved from
+# the repo-root .env at load time, so no keys live in this file.
+#
+# The full multi-model paper lineup still runs via scripts/run_eval_set.py; this
+# config drives a single model-under-test through the same harness.
+
+# Inference stage (inference.py): run the model-under-test over the dataset and
+# write traces to <output_dir>/<run_id>/<model_name>.traces.jsonl.
+inference:
+  model_name: gpt-oss-20b
+  data_dir: ./data
+  # Headline numbers use the full dataset (data/big_finance_full.jsonl), which is
+  # gated behind the contamination policy — swap `dataset` to big_finance_full once
+  # you have access. Defaults to the shipped 50-question public subset so it runs
+  # out of the box.
+  dataset: big_finance_subset   # -> ./data/big_finance_subset.jsonl (or an explicit path)
+  output_dir: ./runs
+  run_id: headline
+  kind: headline                # dry_run | pilot | headline | ablation (recorded in manifest)
+  sample_n: null                # null = full dataset; or an int to sample that many items
+  sample_seed: 0
+  n_trials: 3                   # paper headline: 3 runs per (question, model) for mean ± std
+  concurrency: 3                # per-model parallelism (OpenRouter routes auto-bump to >=8)
+  thinking: "off"               # off | low | medium | high
+  max_steps: 50
+  max_output_tokens: 65536
+  token_budget: null            # optional cumulative prompt+completion token cap per question
+  resume: true                  # skip (question, trial) pairs whose traces already exist
+
+# Evaluation stage (evaluation.py): grade the traces written above with each judge.
+evaluation:
+  model_name: gpt-oss-20b      # which model's traces to grade (usually same as inference)
+  data_dir: ./data
+  dataset: big_finance_subset
+  output_dir: ./runs
+  run_id: headline
+  judges:                       # paper headline: two judges from different families -> inter-judge kappa
+    - openrouter:google/gemini-3.1-pro-preview
+    - openrouter:anthropic/claude-opus-4.7
+  grade_concurrency: 2
+  resume: true                  # skip (question, trial, judge) triples already graded
+
+# Model catalog. Each key maps a friendly MODEL_KEY (used in trace/grade filenames)
+# to a route. Hosted models use the harness `provider:snapshot` id and resolve keys
+# from the environment via LiteLLM. A `base_url` makes an entry a local self-hosted
+# vLLM route (OpenAI-compatible): `model_id` is the served checkpoint name and
+# `api_key` falls back to ${VLLM_API_KEY} (default 'token-abc123').
+llms:
+  # Local self-hosted vLLM route — mirrors FinanceReasoning/MMLU-Pro `local-model1`.
+  #
+  # `model_id` must equal the server's --served-model-name. The harness needs a server
+  # that can emit tool calls, so start it with the harmony tool/reasoning parsers:
+  #
+  #   vllm serve <checkpoint> --served-model-name epoch_1 \
+  #     --enable-auto-tool-choice --tool-call-parser openai \
+  #     --reasoning-parser openai_gptoss
+  #
+  # `extra_body` is forwarded verbatim to the server. Local routes default to
+  # `stop_token_ids: [200012, 200002]` (harmony `<|call|>` / `<|return|>`) because vLLM
+  # drops its own gpt-oss stop tokens on /v1/chat/completions and then 500s on every
+  # tool-enabled request — see big_finance_harness/config.py:VLLM_HARMONY_EXTRA_BODY.
+  # Set `extra_body: {}` to send nothing.
+  local-model1:
+    model_id: epoch_1
+    base_url: http://localhost:8000/v1
+    api_key: token-abc123
+    display: Local vLLM (epoch_1)
+
+  # Hosted routes (provider:snapshot via OpenRouter — one OPENROUTER_API_KEY).
+  opus47:
+    model_id: openrouter:anthropic/claude-opus-4.7
+    display: Claude Opus 4.7 (OpenRouter)
+  sonnet46:
+    model_id: openrouter:anthropic/claude-sonnet-4.6
+    display: Claude Sonnet 4.6 (OpenRouter)
+  gpt55:
+    model_id: openrouter:openai/gpt-5.5
+    display: GPT-5.5 (OpenRouter)
+  gem31pro:
+    model_id: openrouter:google/gemini-3.1-pro-preview
+    display: Gemini 3.1 Pro (OpenRouter)
+  kimi-k26:
+    model_id: openrouter:moonshotai/kimi-k2.6
+    display: Kimi K2.6 (OpenRouter)
+  deepseek-v4-pro:
+    model_id: openrouter:deepseek/deepseek-v4-pro
+    display: DeepSeek V4 Pro (OpenRouter)
+  gpt-oss-20b:
+    model_id: openrouter:openai/gpt-oss-20b
+    display: GPT-OSS 20B (OpenRouter)

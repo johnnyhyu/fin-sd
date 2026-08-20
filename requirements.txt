@@ -1,0 +1,53 @@
+# Direct dependencies of the training pipeline and the vendored benchmark
+# harnesses. Versions are lower-bounded at what the paper's runs used.
+#
+#   pip install -r requirements.txt
+#
+# For a byte-identical environment instead, use the full resolved set:
+#
+#   pip install -r requirements.lock.txt
+#
+# The lock file is a pip freeze of the machine the paper's runs were produced on
+# (209 packages, CUDA build included). Prefer it when reproducing, and this file
+# when developing or installing on different hardware.
+
+# ── Student model: training ───────────────────────────────────────────────────
+torch>=2.11.0
+transformers>=4.57.6
+peft>=0.19.1                # LoRA adapters, including the expert-targeted path
+accelerate>=1.14.0
+safetensors>=0.8.0
+numpy>=2.2.6
+
+# ── Student model: serving ────────────────────────────────────────────────────
+# The pipeline owns the vLLM process: it serves the base model and restarts on a
+# freshly merged checkpoint each epoch. See docs/ARCHITECTURE.md.
+vllm>=0.22.1
+# gpt-oss renders prompts in harmony format. The pipeline encodes through this
+# same library so training and serving contexts are token-identical.
+openai-harmony>=0.0.8
+
+# ── Judges, hint writers and the corpus build chain (OpenRouter) ──────────────
+openai>=2.41.1
+aiohttp>=3.14.1
+requests>=2.34.2
+
+# ── Error localization ────────────────────────────────────────────────────────
+# Fuzzy alignment of the hint model's quoted clause back to a character offset in
+# the student's trajectory, for truncation (paper section 3.2, footnote 1).
+rapidfuzz>=3.14.5
+
+# ── Benchmark harnesses ───────────────────────────────────────────────────────
+pyyaml>=6.0.3               # benchmarks/*/config/config.yaml
+
+# ── Logging (optional) ────────────────────────────────────────────────────────
+# Off by default via WANDB_MODE=disabled; installed because the logging calls are
+# unconditional. Set WANDB_MODE=online to use it.
+wandb>=0.27.2
+
+# ── Optional: cloud dispatch ──────────────────────────────────────────────────
+# Only needed for USE_MODAL=1. See modal_app.py.
+modal>=1.5.1
+
+# ── Development ───────────────────────────────────────────────────────────────
+pytest>=9.0.3

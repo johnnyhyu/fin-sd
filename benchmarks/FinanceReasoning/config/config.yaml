@@ -1,0 +1,74 @@
+
+# use_retrieve: false
+
+inference:
+  # model_name: llama3.1-405b-instruct 
+  model_name: local-model1
+  data_dir: ./data
+  dataset: FinanceReasoning
+  subset:  hard 
+  output_dir: ./results
+  prompt:
+    prompt_type: cot 
+
+evaluation:
+  result_dir: ./results
+  ans_extract_model_name: deepseek-v4-flash
+  model_name: local-model1
+  dataset: FinanceReasoning
+  subset: hard 
+  prompt_type: cot 
+  force_extract_answer: false
+  timeout_duration: 10
+
+# Multi-sample evaluation. When enabled, inference draws `num_samples` completions
+# per question at (temperature, top_p) and evaluation reports avg@N ± CI,
+# pass@k, and mean per-token entropy. Read by both inference.py and evaluation.py.
+# Leave `enabled: false` for the default single greedy-completion behavior.
+sampling_eval:
+  enabled: false
+  num_samples: 16
+  pass_at_k: [1, 4, 8, 16]
+  temperature: 0.7
+  top_p: 0.95
+  ci_confidence: 0.95
+  compute_entropy: true   # requests logprobs; the model/provider must return them
+  top_logprobs: 20
+
+# Model catalog. Trimmed to the two routes the paper uses: the served checkpoint
+# under evaluation, and the judge that extracts a final answer from its output.
+# Upstream's full comparison lineup (Kimi, GLM, Nemotron, Qwen, o1/o3, Claude,
+# Gemini, ...) produces no number in this paper; see docs/CONFIG.md to restore it.
+llms:
+  local-model1:
+    # The SERVED name, not a repo id: it must match whatever the engine on
+    # base_url was launched with (`--served-model-name`, i.e. pipeline config's
+    # VLLM_MODEL). Checkpoint arms are served under their epoch dir's name, so a
+    # base-model id here silently 404s the request. Set VLLM_MODEL to match when
+    # serving something else.
+    model_id: epoch_3
+    base_url: http://localhost:8001/v1
+    api_key: token-abc123
+    support_system_role: true
+    reasoner: true
+    sampling_args:
+      temperature: 0.0
+      max_tokens: 8192
+      top_p: 1.0
+  
+  deepseek-v4-flash:
+    model_id: deepseek/deepseek-v4-flash
+    api_key: ${OPENROUTER_API_KEY}
+    base_url: https://openrouter.ai/api/v1
+    support_system_role: true
+    reasoner: true
+    sampling_args:
+      temperature: 0.0
+      max_tokens: 8192
+      top_p: 1.0
+      extra_body:
+        provider:
+          order:
+            - "deepseek"
+            - "alibaba"
+    

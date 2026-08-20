@@ -1,0 +1,35 @@
+.secrets/
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+runs/
+.DS_Store
+build/
+dist/
+uv.lock
+
+# Dataset JSONLs are fetched via scripts/download_dataset.py and not stored in the
+# repo by default; the public 50-item subset (`data/big_finance_subset.jsonl`) is
+# the one exception and is whitelisted below.
+data/*.jsonl
+!data/big_finance_subset.jsonl
+
+# Stray debug artifacts from development
+*.log
+out.txt
+temp.*
+test.pdf
+
+# Agent run debris — when the model uses python_exec it can write files to the
+# harness root cwd. These cached downloads/screenshots/etc. are not part of the repo.
+/*.pdf
+/*.png
+/*.jpg
+/*.jpeg
+/*.htm
+/*.html
+/*.zip
+/ocrimgs/

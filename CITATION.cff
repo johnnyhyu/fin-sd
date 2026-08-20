@@ -1,0 +1,42 @@
+cff-version: 1.2.0
+message: "If you use this software or corpus, please cite the paper below."
+title: "Fin-SD: Hindsight Self-Distillation for Financial Reasoning"
+abstract: >-
+  Reference implementation and corpus for Fin-SD, a localized hindsight
+  self-distillation recipe for multi-step financial reasoning in which a model
+  localizes the first faulty step of its own failed trajectory, truncates there,
+  and distills a hint-conditioned frozen copy of itself into itself under
+  reverse KL.
+license: Apache-2.0
+type: software
+authors:
+  - family-names: Yu
+    given-names: Johnny
+    email: johnny.yu@berkeley.edu
+    affiliation: University of California, Berkeley
+  - family-names: Gorlla
+    given-names: Cyril
+    email: cyril@ctgt.ai
+    affiliation: CTGT
+preferred-citation:
+  type: conference-paper
+  title: >-
+    How Much Does the Hint Matter? Scope Conditions for Hindsight
+    Self-Distillation in Financial Reasoning
+  authors:
+    - family-names: Yu
+      given-names: Johnny
+      affiliation: University of California, Berkeley
+    - family-names: Gorlla
+      given-names: Cyril
+      affiliation: CTGT
+  collection-title: >-
+    Proceedings of the 7th ACM International Conference on AI in Finance
+    (ICAIF '26)
+  conference:
+    name: 7th ACM International Conference on AI in Finance
+    city: Milan
+    country: IT
+  year: 2026
+  publisher:
+    name: Association for Computing Machinery

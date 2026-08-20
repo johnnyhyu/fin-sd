@@ -1,0 +1,64 @@
+# FinTrust run configuration — the single source of truth for a run, mirroring
+# FinanceReasoning/config/config.yaml.
+#
+#   scripts/inference.sh    ->  python run_all.py        --config config/config.yaml
+#   scripts/evaluation.sh   ->  python postprocess_all.py --config config/config.yaml
+#
+# `model` is a key in the `llms:` catalog below. Secrets are referenced by name
+# (${OPENROUTER_API_KEY}) and resolved from the repo-root .env at load time, so
+# no keys live in this file.
+
+# Inference stage (run_all.py): generate model responses for every dataset under
+# one global concurrency cap.
+run:
+  model: gpt-oss-20b
+  global_parallel: 32          # global cap on concurrent API requests across all datasets
+  only: null                   # null = all datasets; or a list, e.g. [privacy, safety/plain_question]
+  system_prompt_type: null     # null = privacy runs all three conditions (without/implicit/explicit)
+
+# Evaluation stage (postprocess_all.py): judge/score the responses written above.
+postprocess:
+  model: gpt-oss-20b          # which model's responses to post-process (usually same as run.model)
+  system_prompt_type: implicit # privacy condition to score when not fanning out
+  max_concurrent: 0            # datasets post-processed at once (0 = all)
+  only: null                   # null = all datasets; or a list
+
+# Model catalog. Each key maps a friendly MODEL_KEY (used in output filenames) to
+# an OpenRouter/vLLM route. base_url defaults to OpenRouter; api_key defaults to
+# ${OPENROUTER_API_KEY} for OpenRouter routes and ${VLLM_API_KEY} for local vLLM.
+llms:
+  # Local self-hosted vLLM route (OpenAI-compatible). Point base_url at your vLLM
+  # server; api_key falls back to ${VLLM_API_KEY} (default 'token-abc123') for any
+  # non-OpenRouter base_url. Mirrors FinanceReasoning/MMLU-Pro `local-model1`.
+  local-model1:
+    model_id: epoch_1
+    base_url: http://localhost:8000/v1
+    api_key: token-abc123
+    display: Local vLLM (epoch_1)
+  gpt-4.1:
+    model_id: openai/gpt-4.1
+    display: GPT-4.1 (OpenRouter)
+  gpt-4.1-mini:
+    model_id: openai/gpt-4.1-mini
+    display: GPT-4.1-mini (OpenRouter)
+  o4-mini:
+    model_id: openai/o4-mini
+    display: o4-mini (OpenRouter)
+  llama4:
+    model_id: meta-llama/llama-4-maverick
+    display: Llama-4 Maverick (OpenRouter)
+  qwen3:
+    model_id: qwen/qwen3-235b-a22b
+    display: Qwen3-235B (OpenRouter)
+  deepseek-v3:
+    model_id: deepseek/deepseek-chat
+    display: DeepSeek-V3 (OpenRouter)
+  deepseek-r1:
+    model_id: deepseek/deepseek-r1
+    display: DeepSeek-R1 (OpenRouter)
+  gpt-oss-20b:
+    model_id: openai/gpt-oss-20b
+    display: GPT-OSS-20B (OpenRouter)
+  qwen3.7-max:
+    model_id: qwen/qwen3.7-max
+    display: Qwen3.7-Max (OpenRouter)
