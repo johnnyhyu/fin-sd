@@ -97,6 +97,7 @@ If you find this work or codebase useful in your research, please cite:
       primaryClass={cs.LG},
       url={[https://arxiv.org/abs/2610.36082](https://arxiv.org/abs/2610.36082)}, 
 }
+```
 
 ## License
 
