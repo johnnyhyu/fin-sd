@@ -85,7 +85,15 @@ Two presets are **not** from the paper and are labelled as such:
 
 ## Citing
 
-See [CITATION.cff](CITATION.cff).
+@misc{yu2026doeshintmatterscope,
+      title={How Much Does the Hint Matter? Scope Conditions for Hindsight Self-Distillation in Financial Reasoning}, 
+      author={Johnny Yu and Cyril Gorlla},
+      year={2026},
+      eprint={2610.36082},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2610.36082}, 
+}
 
 ## License
 
