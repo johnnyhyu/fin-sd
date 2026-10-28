@@ -1,7 +1,7 @@
 # Fin-SD
 
 Reference implementation and corpus for **"How Much Does the Hint Matter? Scope
-Conditions for Hindsight Self-Distillation in Financial Reasoning"** (ICAIF '26).
+Conditions for Hindsight Self-Distillation in Financial Reasoning"** (ICAIF '26). Paper: https://arxiv.org/abs/2610.36082
 
 Fin-SD is a hindsight self-distillation recipe for multi-step reasoning. On a
 problem the student gets wrong, the student itself locates the first faulty step
