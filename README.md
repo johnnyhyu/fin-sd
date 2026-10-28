@@ -83,8 +83,11 @@ Two presets are **not** from the paper and are labelled as such:
   the epoch boundary fit together. Read before changing the GPU or vLLM setup.
 - **[data/DATASHEET.md](data/DATASHEET.md)** — corpus provenance and limitations.
 
-## Citing
+## Citation
 
+If you find this work or codebase useful in your research, please cite:
+
+```bibtex
 @misc{yu2026doeshintmatterscope,
       title={How Much Does the Hint Matter? Scope Conditions for Hindsight Self-Distillation in Financial Reasoning}, 
       author={Johnny Yu and Cyril Gorlla},
@@ -92,7 +95,7 @@ Two presets are **not** from the paper and are labelled as such:
       eprint={2610.36082},
       archivePrefix={arXiv},
       primaryClass={cs.LG},
-      url={https://arxiv.org/abs/2610.36082}, 
+      url={[https://arxiv.org/abs/2610.36082](https://arxiv.org/abs/2610.36082)}, 
 }
 
 ## License
